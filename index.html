@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSZ_Barbearia</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.png" type="image/png">
+</head>
+<body>
+    <header>
+        <h1>Bem-Vindos a DSZ_Barbearia</h1>
+    <nav>
+        <a href="#agendamento">Agendamento</a>
+    </nav>
+    </header>
+    <section id="agendamento">
+        <h2>Agende seu horário</h2>
+        <form id="form-agendamento">
+            <input type="text" id="ag-nome" placeholder="Seu nome" required />
+            <select id="ag-servico" required>
+                <option value="">Escolha o serviço</option>
+                <option value="Corte">Corte</option>
+                <option value="Barba">Barba</option>
+                <option value="Corte + Barba">Corte + Barba</option>
+            </select>
+            <input type="datetime-local" id="ag-data" step="1800" required>
+            <button type="submit">Agendar</button>
+        </form>
+        
+    </section>
+
+    <footer>
+        <p>&copy; 2025 DSZ_Barbearia</p>
+    </footer>
+    <script src="script.js"></script>
+
+    <!--a ideia e que apareça uma msg assim q a pessoa aperta o botão agendar-->
+    <script>
+        //...exemplo de código Js para exibir a msg de agendamento
+        document.getElementById('form-agendamento').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Isso é apenas um teste de agendamento!');
+        });
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Agenda da DSZ</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.png" type="image/png">
+  <style>
+    body {
+      background-color: #000;        /* fundo preto */
+      color: #fff;                   /* texto branco */
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #fff;
+      border-bottom: 2px solid #fff;
+      padding-bottom: 10px;
+    }
+
+    .agendamento {
+      background-color: #111;        /* cinza escuro */
+      color: #fff;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      border-left: 4px solid #fff;   /* barra lateral branca */
+      box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+    }
+
+    .agendamento p {
+      margin: 5px 0;
+      font-size: 16px;
+    }
+
+    .vazio {
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <h1>Agenda da DSZ</h1>
+  <div id="lista-agendamentos"><p class="vazio">Carregando agendamentos...</p></div>
+
+  <script>
+    async function carregarAgendamentos() {
+      const res = await fetch('/api/agendamentos');
+      const dados = await res.json();
+      const lista = document.getElementById('lista-agendamentos');
+
+      if (dados.length === 0) {
+        lista.innerHTML = '<p class="vazio">Nenhum agendamento ainda.</p>';
+        return;
+      }
+
+      lista.innerHTML = '';
+      dados.forEach((a) => {
+        const div = document.createElement('div');
+        div.className = 'agendamento';
+        div.innerHTML = `
+          <p><strong>Nome:</strong> ${a.nome}</p>
+          <p><strong>Serviço:</strong> ${a.servico}</p>
+          <p><strong>Data:</strong> ${a.data}</p>
+          <p><strong>Hora:</strong> ${a.hora}</p>
+        `;
+        lista.appendChild(div);
+      });
+    }
+
+    carregarAgendamentos();
+  </script>
+</body>
+</html>
